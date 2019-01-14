@@ -29,5 +29,8 @@
     <ClInclude Include="soft3d.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="dog_vertex.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

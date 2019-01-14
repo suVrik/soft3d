@@ -18,7 +18,7 @@ static inline RasterizedVertex convert_vertex(const Vertex* vertex, const Matrix
 	result.y = (int)((y / w + 0.5f) * screen_h);
 	result.z = z / w;
 	result.u = vertex->u;
-	result.v = vertex->v;
+	result.v = 1.f - vertex->v;
 	return result;
 }
 

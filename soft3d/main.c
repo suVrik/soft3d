@@ -2,6 +2,7 @@
 
 #include "soft3d.h"
 
+#include <stdio.h>
 #include <Windows.h>
 
 #define BACKBUFFER_WIDTH 800
@@ -27,7 +28,24 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 			InvalidateRect(hwnd, NULL, FALSE);
 			break;
 		case WM_PAINT: {
+			LARGE_INTEGER StartingTime, EndingTime, ElapsedMicroseconds;
+			LARGE_INTEGER Frequency;
+
+			QueryPerformanceFrequency(&Frequency);
+			QueryPerformanceCounter(&StartingTime);
+
 			potato_update();
+
+			QueryPerformanceCounter(&EndingTime);
+			ElapsedMicroseconds.QuadPart = EndingTime.QuadPart - StartingTime.QuadPart;
+
+			ElapsedMicroseconds.QuadPart *= 1000000;
+			ElapsedMicroseconds.QuadPart /= Frequency.QuadPart;
+
+			char buffer[512] = { 0 };
+			sprintf_s(buffer, 512, "soft3d %f ms %f fps", ElapsedMicroseconds.QuadPart / 1000.f, 1000000.f / ElapsedMicroseconds.QuadPart);
+
+			SetWindowTextA(hwnd, buffer);
 
 			BITMAPINFO info = {0};
 			info.bmiHeader.biSize = sizeof(info.bmiHeader);
