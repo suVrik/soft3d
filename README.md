@@ -1,7 +1,7 @@
 # soft3d
 Soft3D is a simple 3D software rendrerer I made in a single weekend.
 
-The following mesh has over 18k triangles and runs over 120 FPS on my Intel i5.
+The following mesh has over 18k triangles and runs over 250 FPS on my Intel Core i9.
 
 ![](dog.gif)
 
